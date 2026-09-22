@@ -1,6 +1,6 @@
-# InkWell — Architecture
+# Esign — Architecture
 
-InkWell is a small e-signature platform: a **sender** prepares a document, adds
+Esign is a small e-signature platform: a **sender** prepares a document, adds
 any number of **signers**, places fields for each, and sends. Every signer gets a
 private, token-scoped **portal** where they complete only their own fields. When
 all signers finish, the document is **sealed** with a SHA-256 fingerprint and a
@@ -9,7 +9,7 @@ full **audit trail** is preserved.
 ## The five parts of any e-signature system
 
 1. **A document that becomes a PDF.** Generated or uploaded — everything normalizes to PDF.
-2. **Fields placed at coordinates.** Stored as *normalized* percentages + a page number, so a field lands correctly at any zoom/screen size.
+2. **Fields placed at coordinates.** Stored as _normalized_ percentages + a page number, so a field lands correctly at any zoom/screen size.
 3. **A signing workflow.** Who signs, in what order, reached via a tokenized link (no login for signers).
 4. **An audit trail.** The evidence log — every action, timestamped, with IP and method.
 5. **A tamper-evident seal.** A cryptographic hash proving the finished document was not altered.
@@ -28,18 +28,18 @@ in the right place regardless of the device rendering it.
 
 ## API surface
 
-| Method & path | Who | Purpose |
-|---|---|---|
-| `POST /api/documents` | sender | Create a draft (optionally with recipients + fields inline) |
-| `POST /api/documents/:id/recipients` | sender | Add a signer |
-| `POST /api/documents/:id/fields` | sender | Place a field for a signer |
-| `POST /api/documents/:id/send` | sender | Mint per-signer tokens, return portal links |
-| `GET  /api/documents/:id` | sender | Full document + status dashboard |
-| `GET  /api/documents/:id/audit` | sender | Audit trail |
-| `GET  /api/documents/:id/certificate` | sender | Certificate of completion (after sealing) |
-| `GET  /api/sign/:token` | signer | Open portal — document + this signer's fields |
-| `POST /api/sign/:token/fields/:fieldId` | signer | Save one field value |
-| `POST /api/sign/:token/complete` | signer | Consent + finish; seals if last signer |
+| Method & path                           | Who    | Purpose                                                     |
+| --------------------------------------- | ------ | ----------------------------------------------------------- |
+| `POST /api/documents`                   | sender | Create a draft (optionally with recipients + fields inline) |
+| `POST /api/documents/:id/recipients`    | sender | Add a signer                                                |
+| `POST /api/documents/:id/fields`        | sender | Place a field for a signer                                  |
+| `POST /api/documents/:id/send`          | sender | Mint per-signer tokens, return portal links                 |
+| `GET  /api/documents/:id`               | sender | Full document + status dashboard                            |
+| `GET  /api/documents/:id/audit`         | sender | Audit trail                                                 |
+| `GET  /api/documents/:id/certificate`   | sender | Certificate of completion (after sealing)                   |
+| `GET  /api/sign/:token`                 | signer | Open portal — document + this signer's fields               |
+| `POST /api/sign/:token/fields/:fieldId` | signer | Save one field value                                        |
+| `POST /api/sign/:token/complete`        | signer | Consent + finish; seals if last signer                      |
 
 ## Events (webhook points)
 
@@ -56,21 +56,21 @@ email, IP), and **integrity** (the SHA-256 seal). The audit trail is what actual
 wins disputes: it records who signed, when, from where, and how. `seal.js` handles
 integrity; `audit_events` handles the rest.
 
-> This starter gives you the *mechanics*. It is not legal advice, and the demo is not
+> This starter gives you the _mechanics_. It is not legal advice, and the demo is not
 > a legally binding product. Have a real compliance review before production use,
 > especially for regulated documents.
 
 ## What's real vs. simulated today
 
-| Piece | Demo (`index.html`) | Backend scaffold | Production target |
-|---|---|---|---|
-| Document | HTML "pages" | HTML pages stored as JSON | Real PDF via **pdf.js** (render) + **pdf-lib** (flatten values into bytes) |
-| Signer access | portal switcher in one window | real per-token endpoints | tokenized links emailed to each signer's device |
-| Field values | in-memory | persisted per field | same |
-| Integrity | Web Crypto SHA-256 | Node SHA-256 over canonical JSON | hash the flattened PDF bytes; add a trusted timestamp |
-| Attribution | fake IPs | request IP captured | + email/SMS OTP for higher assurance |
-| Sender auth | none | none (TODO) | real auth/sessions for senders |
-| Storage | none | SQLite file | Postgres + S3-compatible object storage for PDFs |
+| Piece         | Demo (`index.html`)           | Backend scaffold                 | Production target                                                          |
+| ------------- | ----------------------------- | -------------------------------- | -------------------------------------------------------------------------- |
+| Document      | HTML "pages"                  | HTML pages stored as JSON        | Real PDF via **pdf.js** (render) + **pdf-lib** (flatten values into bytes) |
+| Signer access | portal switcher in one window | real per-token endpoints         | tokenized links emailed to each signer's device                            |
+| Field values  | in-memory                     | persisted per field              | same                                                                       |
+| Integrity     | Web Crypto SHA-256            | Node SHA-256 over canonical JSON | hash the flattened PDF bytes; add a trusted timestamp                      |
+| Attribution   | fake IPs                      | request IP captured              | + email/SMS OTP for higher assurance                                       |
+| Sender auth   | none                          | none (TODO)                      | real auth/sessions for senders                                             |
+| Storage       | none                          | SQLite file                      | Postgres + S3-compatible object storage for PDFs                           |
 
 ## Roadmap
 
