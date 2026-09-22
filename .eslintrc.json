@@ -10,7 +10,7 @@
     "dist/",
     "coverage/",
     "node_modules/",
-    "inkwell/frontend/legacy-demo.html"
+    "frontend/legacy-demo.html"
   ],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -18,7 +18,7 @@
   },
   "overrides": [
     {
-      "files": ["inkwell/frontend/src/**/*.{ts,tsx}"],
+      "files": ["frontend/src/**/*.{ts,tsx}"],
       "parser": "@typescript-eslint/parser",
       "plugins": ["@typescript-eslint", "react-refresh"],
       "extends": [
