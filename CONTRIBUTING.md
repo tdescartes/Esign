@@ -2,7 +2,7 @@
 
 ## Workflow
 
-1. Work inside `inkwell/`.
+1. Work inside `frontend/`, `backend/`, `shared/`, and `docs/`.
 2. Keep backend route behavior stable while frontend migration is in progress.
 3. Prefer small PRs that leave the repo runnable.
 
