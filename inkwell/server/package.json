@@ -1,0 +1,22 @@
+{
+  "name": "inkwell-server",
+  "version": "0.1.0",
+  "description": "InkWell e-signature API — sender + token-scoped signer portals",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "lint": "eslint .",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.8.1",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1"
+  }
+}

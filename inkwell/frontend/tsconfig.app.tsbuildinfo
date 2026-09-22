@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/api.ts","./src/constants.ts","./src/main.tsx","./src/types.ts","./src/utils.ts","./src/components/certificateview.tsx","./src/components/documentcanvas.tsx","./src/components/fieldvaluemodal.tsx","./src/components/portalbar.tsx","./src/components/sendersidebar.tsx","./src/components/signersidebar.tsx"],"version":"5.9.3"}
