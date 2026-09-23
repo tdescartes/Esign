@@ -1,0 +1,30 @@
+{
+  "name": "esign-backend",
+  "version": "0.1.0",
+  "description": "Esign e-signature API — sender + token-scoped signer portals",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "lint": "eslint .",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^11.8.1",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "multer": "^2.4.0",
+    "pdf-lib": "^1.17.1",
+    "pg": "^8.23.0",
+    "pg-mem": "^3.0.14",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1"
+  }
+}
