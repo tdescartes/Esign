@@ -69,7 +69,7 @@ integrity; `audit_events` handles the rest.
 | Field values  | in-memory                     | persisted per field              | same                                                                       |
 | Integrity     | Web Crypto SHA-256            | Node SHA-256 over canonical JSON | hash the flattened PDF bytes; add a trusted timestamp                      |
 | Attribution   | fake IPs                      | request IP captured              | + email/SMS OTP for higher assurance                                       |
-| Sender auth   | none                          | none (TODO)                      | real auth/sessions for senders                                             |
+| Sender auth   | none                          | none yet                         | real auth/sessions for senders                                             |
 | Storage       | none                          | SQLite file                      | Postgres + S3-compatible object storage for PDFs                           |
 
 ## Roadmap
