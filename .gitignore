@@ -10,3 +10,5 @@ Thumbs.db
 *.db-shm
 *.db-wal
 npm-debug.log*
+backend/uploads/
+backend/sealed/
